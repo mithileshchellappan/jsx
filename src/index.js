@@ -2,24 +2,15 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-
-function getButtText(){
-    return 'Click me';
-}
+import CommentDetail from './CommentDetail';
+import faker from 'faker';
 
 //create react component
 const App = () => {
-
-    const text1 = 'click kar'
   return (
-    <div>
-      <label className="label" for="name">
-        Enter name:
-      </label>
-      <input id="name" type="text" />
-      <button style={{ backgroundColor: "blue", color: "white" }}>
-        {getButtText()}
-      </button>
+    <div className="ui container comments">
+      <CommentDetail author = {faker.name.firstName()} comment="hello"/>
+      <CommentDetail author="LIn" comment="from the pther side"/>
     </div>
   );
 };
