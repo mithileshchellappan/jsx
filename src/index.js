@@ -14,7 +14,7 @@ class App extends React.Component {
 
   render() {
     if (this.state.errMess === "" && this.state.lat == null) {
-      return <Spinner/>;
+      return <Spinner message="Accept or die"/>;
     } else {
       if (this.state.errMess === "") {
         return <SeasonDisplay lat={this.state.lat}/>;
