@@ -1,25 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
+class App extends React.Component {
+  state={lat:null,errMess:''};
 
-class App extends React.Component{
-
-  constructor(props){
-    super(props);
-    this.state={ lat: null };
+  componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
-      position=>{
-        this.setState({
-          lat:position.coords.latitude,
-        });
-      },
-      (err)=>console.log(err)
+      (position) =>this.setState({lat: position.coords.latitude,}),
+      (err) =>this.setState({errMess: err.message,})
     );
   }
+  componentDidUpdate(prevProps) {
+    console.log("updated");
+  }
 
-  render(){
-    
-    return <div>Latitude: {this.state.lat}</div>
+  render() {
+    if (this.state.errMess === "" && this.state.lat == null) {
+      return <div>Loading</div>;
+    } else {
+      if (this.state.errMess === "") {
+        return <div>Latitude: {this.state.lat}</div>;
+      } else {
+        return <div>Err {this.state.errMess}</div>;
+      }
+    }
   }
 }
-ReactDOM.render(<App/>,document.querySelector('#root'));
+ReactDOM.render(<App />, document.querySelector("#root"));
