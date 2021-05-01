@@ -2,9 +2,9 @@ import './VideoItem.css'
 import React from "react";
 
 const VideoItem = (props) => {
-  console.log(props);
+    
   return (
-    <div class="item video-item">
+    <div class="item video-item" onClick={()=>props.onVideoSelect(props.video)}>
       <img
         class="ui  image"
         src={props.video.snippet.thumbnails.default.url}
